@@ -1,2 +1,2 @@
 # Girl-In-The-Machine
-Code for Senior Show Project
+Code and resources for Senior Show Project
