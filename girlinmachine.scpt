@@ -5,6 +5,7 @@ set piano_opened to false
 set closet_opened to false
 set sushi_opened to false  
 set hw_opened to false  
+set books_opened to false
 
 --set gregoryFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/living room/computer.jpg")
 --set sushiFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
@@ -20,12 +21,18 @@ set sushiFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senio
 set beatlesFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/car/sgt peppers.jpg")
 set mompianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano.jpg")
 set pianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano .jpg")
-set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/attic/box /small box/park.jpg")
-set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/attic/box /small box/disney.jpg")
-set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/attic")
+set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
+set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
+
+set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic")
+
 set closetFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/my bedroom/closet")
-set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/attic/box        /coke can")
+
+set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box        /coke can")
+
 set oldHWFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
+
+set booksFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf")
 
 set atticvisits to 0
 
@@ -33,7 +40,7 @@ repeat
   if (get name of every window of application "Finder") contains atticFolder then
     tell app "System Events"
       if (atticvisits < 6) 
-        if gregory_opened and beatles_opened and piano_opened and mompiano_opened and closet_opened and sushi_opened and hw_opened then
+        if beatles_opened and piano_opened and closet_opened and sushi_opened and hw_opened then
           set atticvisits to 6
 
         else 
@@ -57,6 +64,8 @@ repeat
         set atticvisits to 3
 
       else if atticvisits = 3 then  
+        do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 0)"
+
         say "Why do you keep coming back? Why won't you just let it go?" without waiting until completion
         display dialog "Why do you keep coming back? Why won't you just let it go?" buttons {"(Let go)","(Don't let go)"}
 
@@ -72,7 +81,7 @@ repeat
         set atticvisits to 4
 
       else if atticvisits = 4 then  
-        display dialog "..............................................................................................................................................................................................................." buttons {"..."}
+        display dialog "................................................................................................................................................................................................................................................" buttons {"..."}
 
         say "You really want to know, huh?" without waiting until completion
         display dialog "You really want to know, huh?" buttons {"..."}
@@ -99,6 +108,18 @@ repeat
       tell app "Finder" to close window 1
     end tell
 
+  else if (get name of every window of application "Finder") contains booksFolder then 
+    tell app "System Events"
+      delay 0.5
+      set books_opened to true
+
+      say "Hi" without waiting until completion
+      display dialog "Hi" buttons {"OK"}
+
+      delay 0.5
+      tell app "Finder" to close window 1
+    end tell
+
   else if (get name of every window of application "Finder") contains oldHWFolder then 
     set hw_opened to true
     tell app "System Events"
@@ -106,9 +127,6 @@ repeat
 
       say "My dad always stressed the importance of math and science. In his generation, the ones who were successful were either doctors or engineers." without waiting until completion
       display dialog "My dad always stressed the importance of math and science. In his generation, the ones who were successful were either doctors or engineers." buttons {"OK"}
-
-      -- turn on microscope
-      do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 4)"
 
       say "I once failed a biology test and cried. He said it was okay." without waiting until completion
       display dialog "I once failed a biology test and cried. \nHe said it was okay." buttons {"OK"}
@@ -123,24 +141,25 @@ repeat
 
     tell app "System Events"
       delay 0.5
+      say "I used to have a lot of toys. A LOT of them. My dad spoiled me rotten and pretty much gave me anything I asked for." without waiting until completion
+      display dialog "I used to have a lot of toys. A LOT of them. My dad spoiled me rotten and pretty much gave me anything I asked for." buttons {"..."}
 
       say "Throwing toys into the closet always left me with a heavy feeling in my chest; after regularly breathing life into them during the many hours of playtime, it was hard for me to convince myself that my toys hadn’t always been alive in their own way." without waiting until completion
-      display dialog "Throwing toys into the closet always left me with a heavy feeling in my chest; after regularly breathing life into them during the many hours of playtime, it was hard for me to convince myself that my toys hadn’t always been alive in their own way." buttons {"OK"}
+      display dialog "Throwing toys into the closet always left me with a heavy feeling in my chest; after regularly breathing life into them during the many hours of playtime, it was hard for me to convince myself that my toys hadn’t always been alive in their own way." buttons {"..."}
 
       say "So instead of confining them to the closet I took care to keep them in places where they could still see the sunlight, let them take turns sleeping next to me on the bed." without waiting until completion
-      display dialog "So instead of confining them to the closet I took care to keep them in places where they could still see the sunlight, let them take turns sleeping next to me on the bed." buttons {"Do you still feel that way?", "OK"}
+      display dialog "So instead of confining them to the closet I took care to keep them in places where they could still see the sunlight, let them take turns sleeping next to me on the bed." buttons {"Do you still feel that way?"}
 
-      if result = {button returned:"Do you still feel that way?"} then
-        say "I no longer have sympathy for inanimate objects. But sometimes I wish I still did." without waiting until completion
-        display dialog "I no longer have sympathy for inanimate objects.\nBut sometimes I wish I still did. " buttons {"OK"}
-
-      end if
+      say "I struggle a lot more with empathy now. Sometimes I wish I could remember how to feel sorry for inanimate objects." without waiting until completion
+      display dialog "I struggle a lot more with empathy now.\n\nSometimes I wish I could remember how to feel sorry for inanimate objects." buttons {"OK"}
 
       -- turn on Poochi
       do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 3)"
 
-      delay 0.5
+      delay 2
       tell app "Finder" to close window 1
+      do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
+
 
     end tell
 
@@ -173,11 +192,16 @@ repeat
                     end tell
                     say "Ha ha, I used to play it all the time. Guess it wasn't that popular." without waiting until completion
                     display dialog "Ha ha, I used to play it all the time. Guess it wasn't that popular." buttons {"OK"}
+
+                    tell app "Safari"
+                      delay 3
+                      quit
+                    end tell
                 end if
 
               else if result = {button returned:"Where was this?"} then
                 say "Oh, this was from when we were in Florida. We lived in a large house, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." without waiting until completion
-                display dialog "Oh, this was from when we were in Florida. We lived in a large house, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." buttons {"Let's see it.","OK"}
+                display dialog "Oh, this was from when we were in Florida. We lived in a large house, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." buttons {"Let's see it."}
                 if result = {button returned:"Let's see it."} then
                   tell application "Safari"
                       delay 1
@@ -189,23 +213,29 @@ repeat
 
                   delay 5 -- wait for the house to load
                   say "Man, it looks so different now." without waiting until completion
-                  display dialog "Man, it looks so different now." buttons {"Must have been nice, living in Florida.", "What about the other houses?","OK"}
+                  display dialog "Man, it looks so different now." buttons {"Must have been nice, living in Florida.", "What about the other houses?"}
                   if result = {button returned:"Must have been nice, living in Florida."} then
-                    say "Those were some of the best years of my life." without waiting until completion
-                    display dialog "Those were some of the best years of my life." buttons {"OK"}
+                    say "It was. Those were some of the best years of my life. If I had the choice, I would have stayed in that house for as long as I could." without waiting until completion
+                    display dialog "It was. Those were some of the best years of my life. If I had the choice, I would have stayed in that house for as long as I could." buttons {"Why did you move?"}
+
+                    say "..." without waiting until completion
+                    display dialog "..." buttons {"..."} giving up after 2
+
+                    say "My mom wanted us to." without waiting until completion
+                    display dialog "My mom wanted us to." buttons {"OK"} giving up after 2
 
                   else if result = {button returned:"What about the other houses?"} then
                     say "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there." without waiting until completion
-                    display dialog "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there."buttons {"OK"}
+                    display dialog "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there."buttons {"..."}
 
                     say "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company." without waiting until completion
-                    display dialog "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company."buttons {"OK"}
+                    display dialog "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company."buttons {"..."}
 
                     say "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." without waiting until completion
-                    display dialog "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." buttons {"OK"}
+                    display dialog "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." buttons {"..."}
 
                     say "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." without waiting until completion
-                    display dialog "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." buttons{"Your neighborhood looks pretty swanky.", "...How many crushes did you have?", "OK"}
+                    display dialog "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." buttons{"Your neighborhood looks pretty swanky.", "...How many crushes did you have?"}
                     
                     if result = {button returned:"Your neighborhood looks pretty swanky."} then
                       say "Yeah, I didn't know about this back then but we apparently lived in one of the wealthiest communities in Southern Florida. It was the nicest neighborhood I've ever lived in." without waiting until completion
@@ -235,7 +265,7 @@ repeat
            tell app "System Events"
                 delay 1
                 say "This is the best part of the house. Had the piano and fireplace and everything." without waiting until completion
-                display dialog "This is the best part of the house. Had the piano and fireplace and everything." buttons {"Nice bird.", "Who's that?", "OK"}
+                display dialog "This is the best part of the house. Had the piano and fireplace and everything." buttons {"Nice bird.", "Who's that?"}
 
                 if result = {button returned:"Nice bird."} then
                   say "Ha ha, that's Timmy. He was a good bird." without waiting until completion
@@ -271,31 +301,34 @@ repeat
            set piano_opened to true 
            tell app "System Events"
                 delay 1
-                say "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life. " without waiting until completion
-                display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life. " buttons {"OK"}
+                say "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." without waiting until completion
+                display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." buttons {"OK"}
 
                 -- play toy piano
 
                 say "Fur Elise was one of the first real songs I learned how to play." without waiting until completion
-                display dialog "Fur Elise was one of the first real songs I learned how to play." buttons {"How long have you been playing?","Did your parents make you take lessons?", "OK"}
+                display dialog "Fur Elise was one of the first real songs I learned how to play." buttons {"How long have you been playing?"}
+                
+                say "I think it's been roughly 11 years now." without waiting until completion
+                display dialog "I think it's been roughly 11 years now." buttons {"Did you take lessons and stuff?"} 
+ 
+                say "For some reason my parents as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." without waiting until completion
+                display dialog "For some reason they weren't as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." buttons {"Benefits?","Drawbacks?"} 
 
-                if result = {button returned:"How long have you been playing?"} then
-                  say "Hmmm, it's been roughly 11 years now." without waiting until completion
-                  display dialog "Hmmm, it's been roughly 11 years now." buttons {"OK"} 
+                if result = {button returned:"Benefits?"} then
+                  say "I was too lazy and impatient to do basic things like read scores or learn music theory, so I learned many songs purely by ear and observation. I think it was because of that that I am able to remember many songs at a time." without waiting until completion
+                  display dialog "I was too lazy and impatient to do basic things like read scores or learn music theory, so I learned many songs purely by ear and observation. I think it was because of that that I am able to remember many songs at a time." buttons {"..."} 
 
-                else if result = {button returned:"Did your parents make you take lessons?"} then
-                  say "For some reason they weren't as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." without waiting until completion
-                  display dialog "For some reason they weren't as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." buttons {"Benefits?","Drawbacks?","OK"} 
-
-                  if result = {button returned:"Benefits?"} then
-                    say "I was too lazy and impatient to do basic things like read scores or learn music theory, so I learned many songs purely by ear and observation. I think it was because of that that I am able to remember many songs at a time." without waiting until completion
-                    display dialog "I was too lazy and impatient to do basic things like read scores or learn music theory, so I learned many songs purely by ear and observation. I think it was because of that that I am able to remember many songs at a time." buttons {"OK"} 
-
-                  else if result = {button returned:"Drawbacks?"} then
-                    say "Development was pretty slow for me initially. I once had a friend over who was actually able to play with BOTH of her hands, while I was stuck trying to figure out 'Mary Had a Little Lamb' with one. It was frustrating." without waiting until completion
-                    display dialog "Development was pretty slow for me initially. I once had a friend over who was actually able to play with BOTH of her hands, while I was stuck trying to figure out 'Mary Had a Little Lamb' with one. It was frustrating." buttons {"OK"} 
-                  end if
+                else if result = {button returned:"Drawbacks?"} then
+                  say "Development was pretty slow for me initially. I once had a friend over who was actually able to play with BOTH of her hands, while I was stuck trying to figure out 'Mary Had a Little Lamb' with one. It was frustrating." without waiting until completion
+                  display dialog "Development was pretty slow for me initially. I once had a friend over who was actually able to play with BOTH of her hands, while I was stuck trying to figure out 'Mary Had a Little Lamb' with one. It was frustrating." buttons {"..."} 
                 end if
+
+                say "Hmmm." without waiting until completion
+                display dialog "Hmmm." buttons {"..."} 
+                
+                say "I guess technically my mom tried to teach me a little. That didn't end too well." without waiting until completion
+                display dialog "I guess technically my mom tried to teach me a little. That didn't end too well." buttons {"OK"} 
 
                 tell app "Preview"
                   delay 2
@@ -317,23 +350,15 @@ repeat
             delay 2
 
             say "This music brings me way back." without waiting until completion
-            display dialog "This music brings me way back." buttons {"Yeah, this is nice.", "You seem pretty close to your dad.", "OK"}
+            display dialog "This music brings me way back." buttons {"You seem pretty close to your dad."}
 
-            if result = {button returned:"Yeah, this is nice."} then
-              say "You're pretty old-fashioned, aren't you? So am I." without waiting until completion
-              display dialog "You're pretty old-fashioned, aren't you? So am I." buttons {"OK"}
-
-            else if result = {button returned:"You seem pretty close to your dad."} then
+            if result = {button returned:"You seem pretty close to your dad."} then
               say "Guess you could say that I am." without waiting until completion
-              display dialog "Guess you could say that I am." buttons {"Did you spend a lot of time together?", "Are you close to your mom too?", "OK"}
+              display dialog "Guess you could say that I am." buttons {"Are you close to your mom too?"}
 
               if result = {button returned:"Are you close to your mom too?"} then
                 say "No." without waiting until completion
                 display dialog "No." buttons {"OK"}
-
-              else if result = {button returned:"Did you spend a lot of time together?"} then
-                say "Well, at that time he usually couldn't come home from work until later in the evening. So I could really only spend time with him on the weekends." without waiting until completion
-                display dialog "Well, at that time he usually couldn't come home from work until later in the evening. So I could really only spend time with him on the weekends." buttons {"OK"}
 
               end if 
             end if 
@@ -342,6 +367,8 @@ repeat
               delay 2
               quit
             end tell
+
+            do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
             
          end tell
 
@@ -350,30 +377,28 @@ repeat
          tell app "System Events"
             delay 1
             say "Awww that's Su shi. She looks so young in that photo." without waiting until completion
-            display dialog "Awww that's Sushi. She looks so young in that photo." buttons {"Sushi?", "OK"}
+            display dialog "Awww that's Sushi. She looks so young in that photo." buttons {"That's a cute name."}
 
-            if result = {button returned:"Sushi?"} then
-              say "Don't ask me. My mom named her." without waiting until completion
-              display dialog "Don't ask me. My mom named her." buttons {"..."}
+            say "Well, I didn't name her." without waiting until completion
+            display dialog "Well, I didn't name her." buttons {"Who did?"}
 
-              say "She used to tell me that whenever I named the pets, something bad would always happen to them. I believed that for a long time." without waiting until completion
-              display dialog "She used to tell me that whenever I named the pets, something bad would always happen to them. I believed that for a long time." buttons {"Is Sushi still alive?", "OK"} 
+            display dialog "...My mom always named the pets." buttons {"..."}
 
-              if result = {button returned:"Is Sushi still alive?"} then
-                say "Yeah, actually. Out of all the pets we've had, she's been with us the longest. Still very sprightly, too." without waiting until completion
-                display dialog "Yeah, actually. Out of all the pets we've had, she's been with us the longest. Still very sprightly, too." buttons {"..."}
+            say "She used to tell me that whenever I named the pets, something bad would always happen to them. I believed that for a long time." without waiting until completion
+            display dialog "She used to tell me that whenever I named the pets, something bad would always happen to them. \n\nI believed that for a long time." buttons {"Is Sushi still alive?"} 
 
-                say "You know when Su shi was little she was this hairball of energy. She would just run around the halls of our house for no reason whatsoever. I heard from somewhere that animals were capable of seeing ghosts, so I believed that maybe she was running after them." without waiting until completion
-                display dialog "You know when Sushi was little she was this hairball of energy. She would just run around the halls of our house for no reason whatsoever. I heard from somewhere that animals were capable of seeing ghosts, so I believed that maybe she was running after them." buttons {"..."}
+            say "Yeah, actually. Out of all the pets we've had, she's been with us the longest. Still very sprightly, too." without waiting until completion
+            display dialog "Yeah, actually. Out of all the pets we've had, she's been with us the longest. Still very sprightly, too." buttons {"..."}
 
-                say "Even in her old age there are moments when she would suddenly jolt alert and sprint to the other side of the room, as if possessed by an enormous burst of energy." without waiting until completion
-                display dialog "Even in her old age there are moments when she would suddenly jolt alert and sprint to the other side of the room, as if possessed by an enormous burst of energy." buttons {"..."}
+            say "You know when Su shi was little she was this hairball of energy. She would just run around the halls of our house for no reason whatsoever. I heard from somewhere that animals were capable of seeing ghosts, so I believed that maybe she was running after them." without waiting until completion
+            display dialog "You know when Sushi was little she was this hairball of energy. She would just run around the halls of our house for no reason whatsoever. I heard from somewhere that animals were capable of seeing ghosts, so I believed that maybe she was running after them." buttons {"..."}
 
-                say "Whenever I see her do this now, I wonder why she still chases after those ghosts, and whether I sometimes do the same." without waiting until completion
-                display dialog "Whenever I see her do this now I wonder why she still chases after those ghosts, and whether I sometimes do the same." buttons {"OK"}
-              end if
-            end if
+            say "Even in her old age there are moments when she would suddenly jolt alert and sprint to the other side of the room, as if possessed by an enormous burst of energy." without waiting until completion
+            display dialog "Even in her old age there are moments when she would suddenly jolt alert and sprint to the other side of the room, as if possessed by an enormous burst of energy." buttons {"..."}
 
+            say "Whenever I see her do this now, I wonder why she still chases after those ghosts, and whether I sometimes do the same." without waiting until completion
+            display dialog "Whenever I see her do this now I wonder why she still chases after those ghosts, and whether I sometimes do the same." buttons {"OK"}
+           
             tell app "Preview"
               delay 2
               quit
@@ -427,10 +452,11 @@ repeat
               set closet_opened to false
               set sushi_opened to false  
               set hw_opened to false  
+              set books_opened to false
 
               set atticvisits to 0
 
-              repeat 6 times
+              repeat 7 times
                 delay 0.5
                 keystroke "w" using {command down} 
               end repeat 
