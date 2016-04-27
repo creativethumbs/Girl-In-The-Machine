@@ -7,23 +7,32 @@ set sushi_opened to false
 set hw_opened to false  
 set books_opened to false
 
-set gregoryFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/living room/computer.jpg")
-set sushiFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
-set beatlesFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/car/sgt peppers.jpg")
-set mompianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano.jpg")
-set pianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano .jpg")
-set momparkFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
-set momdisneyFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
+--set gregoryFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/living room/computer.jpg")
+--set sushiFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
+--set beatlesFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/car/sgt peppers.jpg")
+--set mompianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano.jpg")
+--set atticFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/attic")
+--set closetFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/my bedroom/closet")
+--set cokecanFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/attic/box        /coke can")
 
-set atticFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic")
+--laptop testing !!!
+set gregoryFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/living room/computer.jpg")
+set sushiFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
+set beatlesFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/car/sgt peppers.jpg")
+set mompianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano.jpg")
+set pianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano .jpg")
+set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
+set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
 
-set closetFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/my bedroom/closet")
+set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic")
 
-set cokecanFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic/box        /coke can")
+set closetFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/my bedroom/closet")
 
-set oldHWFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
+set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box        /coke can")
 
-set booksFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/bookshelf")
+set oldHWFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
+
+set booksFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf")
 
 set atticvisits to 0
 
@@ -77,14 +86,13 @@ repeat
         say "You really want to know, huh?" without waiting until completion
         display dialog "You really want to know, huh?" buttons {"..."}
 
-        say "..." without waiting until completion
-        display dialog "..." buttons {"..."} giving up after 2
+        say "...Fine. I'll show you after you've looked around the house some more." without waiting until completion
+        display dialog "...Fine. I'll show you after you've looked around the house some more." buttons {"OK"}
+        set atticvisits to 5
 
-        say "Fine. You can go ahead." without waiting until completion
-        display dialog "Fine. \n\nYou can go ahead." buttons {"OK"}
-        (cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)
-
-        set atticvisits to 6
+      else if atticvisits = 5 then   
+        say "Why don't you look around the house some more, and come back later? " without waiting until completion
+        display dialog "Why don't you look around the house some more, and come back later? " buttons {"OK"}
 
       end if
     end tell
@@ -297,7 +305,6 @@ repeat
                 display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." buttons {"OK"}
 
                 -- play toy piano
-                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s 0)"
 
                 say "Fur Elise was one of the first real songs I learned how to play." without waiting until completion
                 display dialog "Fur Elise was one of the first real songs I learned how to play." buttons {"How long have you been playing?"}
@@ -327,8 +334,6 @@ repeat
                   delay 2
                   quit
                 end tell
-
-                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s x)"
 
            end tell 
         

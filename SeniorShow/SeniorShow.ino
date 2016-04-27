@@ -6,7 +6,6 @@
 
 #include <MOS.h>
 #include <Wire.h> // Enable this line if using Arduino Uno, Mega, etc.
-#include <elapsedMillis.h>
 
 int val = 0;       // variable to store the data from the serial port
 
@@ -20,15 +19,17 @@ int recordPin = 2;
 boolean angry = false;
 
 void setup() {
-  for (int i = 2; i <= 5; i++) {
+  for (int i = 2; i <= 6; i++) {
     pinMode(i, OUTPUT);
   }
+  pinMode(clockPin, OUTPUT);
 
   Serial.begin(9600);        // connect to the serial port
 
-  for (int i = 2; i <= 5; i++) {
+  for (int i = 2; i <= 6; i++) {
     digitalWrite(i, HIGH);
   }
+  digitalWrite(clockPin, LOW);
 }
 
 void loop () {
@@ -41,7 +42,7 @@ void loop () {
         break;
       case '1':
         digitalWrite(recordPin, LOW);
-        break; 
+        break;
       case '3':
         digitalWrite(poochiPin, LOW);
         break;
@@ -51,20 +52,23 @@ void loop () {
         break;
       case '5':
         digitalWrite(floorlampPin, LOW);
-        digitalWrite(clockPin, LOW);
+        delay(1000);
+        digitalWrite(clockPin, HIGH);
         break;
 
       // turn off everything
       case 'x':
         angry = false;
-        for (int i = 2; i <= 5; i++) {
+        for (int i = 2; i <= 6; i++) {
           digitalWrite(i, HIGH);
         }
+        digitalWrite(clockPin, LOW);
         break;
     }
 
-    MOS_Call(angryLights);
   }
+
+  MOS_Call(angryLights);
 }
 
 void angryLights(PTCB tcb) {
@@ -73,29 +77,29 @@ void angryLights(PTCB tcb) {
     MOS_WaitForCond(tcb, angry);
     digitalWrite(floorlampPin, LOW);
     digitalWrite(lampPin, LOW);
-    
+
+    MOS_Delay(tcb, 500);
+
+    digitalWrite(floorlampPin, HIGH);
+    digitalWrite(lampPin, HIGH);
     MOS_Delay(tcb, 1000);
-    
-    digitalWrite(floorlampPin, HIGH);
-    digitalWrite(lampPin, HIGH);
-    MOS_Delay(tcb, 2000);
 
     digitalWrite(floorlampPin, LOW);
     digitalWrite(lampPin, LOW);
-    
-    MOS_Delay(tcb, 500);
-    
+
+    MOS_Delay(tcb, 250);
+
     digitalWrite(floorlampPin, HIGH);
     digitalWrite(lampPin, HIGH);
-    MOS_Delay(tcb, 500);
+    MOS_Delay(tcb, 250);
 
     digitalWrite(floorlampPin, LOW);
     digitalWrite(lampPin, LOW);
-    
-    MOS_Delay(tcb, 500);
-    
+
+    MOS_Delay(tcb, 250);
+
     digitalWrite(floorlampPin, HIGH);
-    digitalWrite(lampPin, HIGH); 
+    digitalWrite(lampPin, HIGH);
 
     MOS_Delay(tcb, 2000);
   }

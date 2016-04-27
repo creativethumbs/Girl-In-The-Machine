@@ -1,0 +1,18 @@
+# turn on angry lights
+(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 0)
+
+# turn on record
+(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 1)
+
+# turn on Poochi
+(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 3)
+
+# turn on fan/lamp
+(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 4)
+
+# turn on floor lamp/clock
+(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 5)
+
+# turn off everything
+(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)
+
