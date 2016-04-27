@@ -1,29 +1,20 @@
-set gregory_opened to false
-set beatles_opened to false
-set mompiano_opened to false
-set piano_opened to false
-set closet_opened to false
-set sushi_opened to false  
-set hw_opened to false  
-set books_opened to false
+set gregoryFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/living room/computer.jpg")
+set sushiFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
+set beatlesFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/car/sgt peppers.jpg")
+set mompianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano.jpg")
+set pianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano .jpg")
+set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
+set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
 
-set gregoryFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/living room/computer.jpg")
-set sushiFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
-set beatlesFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/car/sgt peppers.jpg")
-set mompianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano.jpg")
-set pianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano .jpg")
-set momparkFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
-set momdisneyFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
+set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic")
 
-set atticFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic")
+set closetFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/my bedroom/closet")
 
-set closetFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/my bedroom/closet")
+set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box        /coke can")
 
-set cokecanFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/door to attic/box        /coke can")
+set oldHWFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
 
-set oldHWFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
-
-set booksFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/bookshelf")
+set booksFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf")
 
 set atticvisits to 0
 
@@ -82,8 +73,6 @@ repeat
 
         say "Fine. You can go ahead." without waiting until completion
         display dialog "Fine. \n\nYou can go ahead." buttons {"OK"}
-        (cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)
-
         set atticvisits to 6
 
       end if
@@ -103,7 +92,7 @@ repeat
   else if (get name of every window of application "Finder") contains booksFolder then 
     tell app "System Events"
       delay 0.5
-      set books_opened to true
+
 
       say "Hi" without waiting until completion
       display dialog "Hi" buttons {"OK"}
@@ -113,7 +102,7 @@ repeat
     end tell
 
   else if (get name of every window of application "Finder") contains oldHWFolder then 
-    set hw_opened to true
+
     tell app "System Events"
       delay 0.5
 
@@ -129,8 +118,7 @@ repeat
     end tell
 
   else if (get name of every window of application "Finder") contains closetFolder then
-    set closet_opened to true
-
+    
     tell app "System Events"
       delay 0.5
       say "I used to have a lot of toys. A LOT of them. My dad spoiled me rotten and pretty much gave me anything I asked for." without waiting until completion
@@ -159,7 +147,7 @@ repeat
 
    if (get running of application "Preview") is true then 
        if (get name of every window of application "Preview") contains gregoryFile then
-           set gregory_opened to true 
+
            tell app "System Events"
               delay 1
               say "That's me looking sassy as ever. I guess I've always been surrounded by computers." without waiting until completion
@@ -253,7 +241,7 @@ repeat
            end tell
 
         else if (get name of every window of application "Preview") contains mompianoFile then
-           set mompiano_opened to true 
+
            tell app "System Events"
                 delay 1
                 say "This is the best part of the house. Had the piano and fireplace and everything." without waiting until completion
@@ -290,14 +278,13 @@ repeat
            end tell 
 
         else if (get name of every window of application "Preview") contains pianoFile then
-           set piano_opened to true 
+
            tell app "System Events"
                 delay 1
                 say "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." without waiting until completion
                 display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." buttons {"OK"}
 
                 -- play toy piano
-                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s 0)"
 
                 say "Fur Elise was one of the first real songs I learned how to play." without waiting until completion
                 display dialog "Fur Elise was one of the first real songs I learned how to play." buttons {"How long have you been playing?"}
@@ -328,12 +315,10 @@ repeat
                   quit
                 end tell
 
-                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s x)"
-
            end tell 
         
         else if (get name of every window of application "Preview") contains beatlesFile then
-         set beatles_opened to true 
+
          tell app "System Events"
             delay 1
             say "When I was in elementary school, whenever my dad drove me to school he would always put on The Beatles' Sargent Peppers album for us to listen to. I still vividly remember those times in the car." without waiting until completion
@@ -368,7 +353,7 @@ repeat
          end tell
 
        else if (get name of every window of application "Preview") contains sushiFile then
-         set sushi_opened to true 
+
          tell app "System Events"
             delay 1
             say "Awww that's Su shi. She looks so young in that photo." without waiting until completion
@@ -439,15 +424,6 @@ repeat
                 delay 3
                 quit
               end tell
-
-              set gregory_opened to false
-              set beatles_opened to false
-              set mompiano_opened to false
-              set piano_opened to false
-              set closet_opened to false
-              set sushi_opened to false  
-              set hw_opened to false  
-              set books_opened to false
 
               set atticvisits to 0
 
