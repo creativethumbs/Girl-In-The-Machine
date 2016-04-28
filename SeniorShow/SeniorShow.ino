@@ -69,6 +69,7 @@ void loop () {
   }
 
   MOS_Call(angryLights);
+  MOS_Call(angryLights2);
 }
 
 void angryLights(PTCB tcb) {
@@ -76,11 +77,11 @@ void angryLights(PTCB tcb) {
   while (1) {
     MOS_WaitForCond(tcb, angry);
     digitalWrite(floorlampPin, LOW);
-    digitalWrite(tablelampPin, LOW);
 
     MOS_Delay(tcb, 250);
 
     digitalWrite(floorlampPin, HIGH); 
+    digitalWrite(tablelampPin, LOW);
     MOS_Delay(tcb, 500);
 
     digitalWrite(floorlampPin, LOW); 
@@ -95,9 +96,23 @@ void angryLights(PTCB tcb) {
     MOS_Delay(tcb, 125);
 
     digitalWrite(floorlampPin, HIGH);
+    digitalWrite(tablelampPin, HIGH);
     
     MOS_Delay(tcb, 2000);
-    digitalWrite(tablelampPin, HIGH);
+  }
+
+}
+
+void angryLights2(PTCB tcb) {
+  MOS_Continue(tcb);
+  while (1) {
+    MOS_WaitForCond(tcb, angry);
+    digitalWrite(pianolampPin, LOW);
+
+    MOS_Delay(tcb, 1000);
+
+    digitalWrite(pianolampPin, HIGH); 
+    MOS_Delay(tcb, 1000);
   }
 
 }

@@ -16,6 +16,8 @@ set atticdoorFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the M
 
 set closetFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/my bedroom/closet")
 
+set poolFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/pool")
+
 set cokecanFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box        /coke can")
 
 set oldHWFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
@@ -76,6 +78,8 @@ repeat
         display dialog "Fine. \n\nYou can go ahead." buttons {"OK"}
         set atticvisits to 6
 
+        do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
+
       end if
     end tell
 
@@ -97,13 +101,8 @@ repeat
       say "I was really into animals when I was little. We had this huge animal encyclopedia that I red from cover to cover. It was my favorite." without waiting until completion
       display dialog "I was really into animals when I was little. We had this huge animal encyclopedia that I read from cover to cover. It was my favorite." buttons {"Is that the one on the shelf?"}
 
-      tell app "Preview"
-        open "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/bookshelf/EAA.gif"
-        activate
-      end tell
-
-      say "Yup, that's the one." without waiting until completion
-      display dialog "Yup, that's the one." buttons {"OK"}
+      say "Yup, 'The Encyclopedia of Awesome Animals'." without waiting until completion
+      display dialog "Yup, 'The Encyclopedia of Awesome Animals'" buttons {"OK"}
 
       delay 3
 
@@ -118,8 +117,7 @@ repeat
       --blow fan
       do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 4)"
 
-      delay 2
-      tell app "Preview" to quit
+      delay 2 
       tell app "Finder" to close window 1
 
       delay 1
@@ -138,6 +136,19 @@ repeat
 
       say "I once failed a biology test and cried. He said it was okay." without waiting until completion
       display dialog "I once failed a biology test and cried. \nHe said it was okay." buttons {"OK"}
+
+      delay 0.5
+      tell app "Finder" to close window 1
+
+    end tell
+
+  else if (get name of every window of application "Finder") contains poolFolder then 
+
+    tell app "System Events"
+      delay 0.5
+
+      say "There's something comforting about watching the light dance in the turquoise water, don't you think?" without waiting until completion
+      display dialog "There's something comforting about watching the light dance in the turquoise water." buttons {"OK"}
 
       delay 0.5
       tell app "Finder" to close window 1
@@ -165,7 +176,6 @@ repeat
 
       delay 2
       tell app "Finder" to close window 1
-      do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
 
 
     end tell
@@ -322,6 +332,7 @@ repeat
                 display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." buttons {"OK"}
 
                 -- play toy piano
+                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 6)"
                 do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s 0)"
 
                 say "Fur Elise was one of the first real songs I learned how to play." without waiting until completion
@@ -330,8 +341,8 @@ repeat
                 say "I think it's been roughly 11 years now." without waiting until completion
                 display dialog "I think it's been roughly 11 years now." buttons {"Did you take lessons and stuff?"} 
  
-                say "For some reason my parents as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." without waiting until completion
-                display dialog "For some reason they weren't as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." buttons {"Benefits?","Drawbacks?"} 
+                say "For some reason my parents weren't as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." without waiting until completion
+                display dialog "For some reason my parents weren't as intent on making me take lessons like many other kids at that age. They just let me do my own thing. Which has its benefits, of course. And drawbacks." buttons {"Benefits?","Drawbacks?"} 
 
                 if result = {button returned:"Benefits?"} then
                   say "I was too lazy and impatient to do basic things like read scores or learn music theory, so I learned many songs purely by ear and observation. I think it was because of that that I am able to remember many songs at a time." without waiting until completion
@@ -352,6 +363,8 @@ repeat
                   delay 2
                   quit
                 end tell
+
+                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
 
            end tell 
         
@@ -427,8 +440,8 @@ repeat
          else if (get name of every window of application "Preview") contains momparkFile or (get name of every window of application "Preview") contains momdisneyFile then
            tell app "System Events"
               delay 1
-              say "I usually avoid talking about my mom with other people. \n\nBut I suppose it's never too late to start." without waiting until completion
-              display dialog "I usually avoid talking about my mom with other people. But I suppose it's never too late to start." buttons {"..."}
+              say "I usually avoid talking about my mom with other people. But I suppose it's never too late to start." without waiting until completion
+              display dialog "I usually avoid talking about my mom with other people. \n\nBut I suppose it's never too late to start." buttons {"..."}
 
               say "See, the thing is, I haven't talked to my mom in a while. A long while. And I don't even think I'll ever be able to have a normal conversation with her again." without waiting until completion
               display dialog "See, the thing is, I haven't talked to my mom in a while. A long while. And I don't even think I'll ever be able to have a normal conversation with her again." buttons {"..."}
@@ -444,8 +457,8 @@ repeat
 
               delay 1
 
-              say "That being said. . .sometimes I wish I could talk to her. Like really talk to her. About things moms and daughters talk about. But even she has changed a lot over the years." without waiting until completion
-              display dialog "That being said. . .sometimes I wish I could talk to her. Like really talk to her. About things moms and daughters talk about. But even she has changed a lot over the years." buttons {"..."}
+              say "That being said. . .sometimes I wish I could talk to her. Like really talk to her. About things moms and daughters talk about. But she has changed a lot over the years." without waiting until completion
+              display dialog "That being said...sometimes I wish I could talk to her. Like really talk to her. About things moms and daughters talk about. But she has changed a lot over the years." buttons {"..."}
 
               say "And so have I." without waiting until completion
               display dialog "And so have I." buttons {"..."}
@@ -476,7 +489,9 @@ repeat
               display dialog "She wakes." with title "THE END" buttons {"OK"}
 
               say "Special thanks to Golan Levin and the STUDIO for Creative Inquiry for funding this project. I would also like to thank ModelTalker for making such an amazing synthesized form of my voice (for free). And of course, thank you to my friends, professors, and family for supporting me throughout the years. Without them, I would not have as many incredible stories to share." without waiting until completion
-              display dialog "Special thanks to Golan Levin and the STUDIO for Creative Inquiry for funding this project. I would also like to thank ModelTalker for making such an amazing synthesized form of my voice (for free!). And of course, thank you to my friends, professors, and family for supporting me throughout the years. Without them, I would not have as many incredible stories to share." with title "THE END" buttons {"Restart program"}
+              display dialog "Special thanks to Golan Levin and the STUDIO for Creative Inquiry for funding this project. I would also like to thank ModelTalker for making such an amazing synthesized form of my voice (for free!). And of course, thank you to my friends, professors, and family for supporting me throughout the years. Without them, I would not have as many incredible stories to share." with title "THE END" buttons {"She dreams again."}
+
+              do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
 
            end tell
  
