@@ -45,8 +45,6 @@ unsigned long noteStartTime;
 
 int LoopLength = 45;
 int CurrLoop = 0;
-//int LoopLength = 45;
-//int CurrLoop = 5;
 
 int LoopPosition = 0;
 
@@ -57,15 +55,8 @@ boolean playingNote = false;
 boolean playSong = false;
 
 int Loops [1][45][2] = {
-
-  // full loop (so much money)
-  { {E1_A1_C2_E2, 150}, {REST, 100}, {E1_A1_C2_E2, 150}, {REST, 100}, {E1_A1_C2_E2, 150}, {REST, 100}, {E1_A1_C2_E2, 150}, {REST, 100}, {E1_A1_C2_E2, 150}, {REST, 100}, {E1_A1_C2_E2, 150}, {REST, 100},
-    {KE1, 125}, {KA1, 125}, {KC2, 125}, {KE2, 125},
-    {F1_A1_C2_DS2, 150}, {REST, 100}, {F1_A1_C2_DS2, 150}, {REST, 100}, {F1_A1_C2_DS2, 150}, {REST, 100}, {F1_A1_C2_DS2, 150}, {REST, 100}, {F1_A1_C2_DS2, 150}, {REST, 100}, {F1_A1_C2_DS2, 150}, {REST, 100},
-    {KF1, 125}, {KA1, 125}, {KC2, 125}, {KDS2, 125},
-    {F1_A1_D2, 400}, {REST, 100},
-    {D1_F1_C2, 150}, {REST, 100}, {D1_F1_A1, 150}, {REST, 100}, {D1_GS1_C2, 150}, {REST, 100}, {D1_GS1_C2, 500}, {C1_E1_A1, 1250},
-    {A1_C2_E2_A2, 250}, {REST, 250}, {REST, 500}
+  {
+    {}
   }
 };
 
@@ -108,11 +99,11 @@ void loop() {
 
   if (playSong && LoopPosition < LoopLength) {
     if (!playingNote) {
-      CurrNote = Loops[CurrLoop][LoopPosition % LoopLength][0];
-      NoteDuration = Loops[CurrLoop][LoopPosition % LoopLength][1];
+      CurrNote = Loops[CurrLoop][LoopPosition][0];
+      NoteDuration = Loops[CurrLoop][LoopPosition][1];
 
       if (CurrNote == E1_A1_C2_E2) {
-        Serial.println(LoopPosition % LoopLength);
+        Serial.println(LoopPosition);
         digitalWrite(KE1, HIGH);
         digitalWrite(KA1, HIGH);
         digitalWrite(KC2, HIGH);

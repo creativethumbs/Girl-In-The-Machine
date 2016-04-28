@@ -6,6 +6,8 @@ set pianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senio
 set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
 set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
 
+set momdrawing to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/guest bedroom/bed/pillow/drawing.jpeg")
+
 set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic")
 
 set closetFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/my bedroom/closet")
@@ -22,13 +24,8 @@ repeat
   if (get name of every window of application "Finder") contains atticFolder then
     tell app "System Events"
       if (atticvisits < 6) 
-        if beatles_opened and piano_opened and closet_opened and sushi_opened and hw_opened then
-          set atticvisits to 6
-
-        else 
-          delay 0.5
-          keystroke "w" using {command down} -- closes window
-        end if
+        delay 0.5
+        keystroke "w" using {command down} -- closes window
       end if
 
       if atticvisits = 0 then
@@ -56,8 +53,8 @@ repeat
           display dialog "Then go away." buttons {"OK"}
 
         else if result = {button returned:"(Don't let go)"} then
-          say "Well it's none of your fucking business. You don't need to keep coming back here." without waiting until completion
-          display dialog "Well it's none of your fucking business. You don't need to keep coming back here." buttons {"OK"}
+          say "Well, it's none of your fucking business. You don't need to keep coming back here." without waiting until completion
+          display dialog "Well, it's none of your fucking business. You don't need to keep coming back here." buttons {"OK"}
         end if
 
         set atticvisits to 4
@@ -65,10 +62,9 @@ repeat
       else if atticvisits = 4 then  
         display dialog "................................................................................................................................................................................................................................................" buttons {"..."}
 
-        say "You really want to know, huh?" without waiting until completion
-        display dialog "You really want to know, huh?" buttons {"..."}
+        say "You really want to know what's in here, huh?" without waiting until completion
+        display dialog "You really want to know what's in here, huh?" buttons {"..."}
 
-        say "..." without waiting until completion
         display dialog "..." buttons {"..."} giving up after 2
 
         say "Fine. You can go ahead." without waiting until completion
@@ -91,14 +87,36 @@ repeat
 
   else if (get name of every window of application "Finder") contains booksFolder then 
     tell app "System Events"
-      delay 0.5
+      delay 0.5 
 
+      say "I was really into animals when I was little. I remember having this huge animal encyclopedia that I red from cover to cover, called 'The Encyclopedia of Awesome Animals'. It was my favorite." without waiting until completion
+      display dialog "I was really into animals when I was little. I remember having this huge animal encyclopedia that I read from cover to cover, called 'The Encyclopedia of Awesome Animals'. It was my favorite." buttons {"Is that the one on the shelf?"}
 
-      say "Hi" without waiting until completion
-      display dialog "Hi" buttons {"OK"}
+      tell app "Preview"
+        open "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf/ .gif"
+        activate
+      end tell
+      --tell app "Preview" to open "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf/ .gif"
 
-      delay 0.5
+      say "Yup, that's the one." without waiting until completion
+      display dialog "Yup, that's the one." buttons {"OK"}
+
+      delay 3
+
+      display dialog "..." buttons {"..."} giving up after 2
+
+      say "You know, I used to draw nothing but animals. One day my mom was watching me draw and asked me if I could do people for a change." without waiting until completion
+      display dialog "You know, I used to draw nothing but animals.\n\nOne day my mom was watching me draw and asked me if I could do people for a change." buttons {"..."}
+
+      say "I only draw people now." without waiting until completion
+      display dialog "I only draw people now." buttons {"OK"}
+
+      --blow fan
+
+      delay 2
+      tell app "Preview" to quit
       tell app "Finder" to close window 1
+
     end tell
 
   else if (get name of every window of application "Finder") contains oldHWFolder then 
@@ -173,10 +191,6 @@ repeat
                     say "Ha ha, I used to play it all the time. Guess it wasn't that popular." without waiting until completion
                     display dialog "Ha ha, I used to play it all the time. Guess it wasn't that popular." buttons {"OK"}
 
-                    tell app "Safari"
-                      delay 3
-                      quit
-                    end tell
                 end if
 
               else if result = {button returned:"Where was this?"} then
@@ -257,8 +271,8 @@ repeat
                   end if
 
                 else if result = {button returned:"Who's that?"} then
-                  say "That's me!" without waiting until completion
-                  display dialog "That's me!" buttons {"I meant the person behind you.", "OK"}
+                  say "That's me from all those years ago! Haven't changed much except for the hair." without waiting until completion
+                  display dialog "That's me from all those years ago! Haven't changed much except for the hair." buttons {"I meant the person behind you.", "OK"}
 
                   if result = {button returned:"I meant the person behind you."} then
                     say "Oh." without waiting until completion
@@ -276,6 +290,20 @@ repeat
                 end tell
 
            end tell 
+
+        else if (get name of every window of application "Preview") contains momdrawing then
+
+           tell app "System Events"
+                delay 1
+                tell app "Preview" 
+                  quit
+                end tell
+
+                say "Hey, you weren't supposed to see that...I thought I put it away." without waiting until completion
+                display dialog "Hey, you weren't supposed to see that...I thought I put it away." buttons {"OK"}
+
+           end tell 
+
 
         else if (get name of every window of application "Preview") contains pianoFile then
 
@@ -427,7 +455,7 @@ repeat
 
               set atticvisits to 0
 
-              repeat 7 times
+              repeat 6 times
                 delay 0.5
                 keystroke "w" using {command down} 
               end repeat 
