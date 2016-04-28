@@ -1,26 +1,26 @@
-set gregoryFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/living room/computer.jpg")
-set sushiFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
-set beatlesFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/car/sgt peppers.jpg")
-set mompianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano.jpg")
-set pianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano .jpg")
+set gregoryFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/living room/computer.jpg")
+set sushiFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/sushi.jpg")
+set beatlesFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/car/sgt peppers.jpg")
+set mompianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano.jpg")
+set pianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano .jpg")
 
-set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/park.jpg")
+set momparkFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/park.jpg")
 
-set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/disney.jpg")
+set momdisneyFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/disney.jpg")
 
-set momdrawing to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/guest bedroom/bed/pillow/drawing.jpeg")
+set momdrawing to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/guest bedroom/bed/pillow/drawing.jpeg")
 
-set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet ")
+set atticFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet ")
 
-set atticdoorFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic")
+set atticdoorFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic")
 
-set closetFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/my bedroom/closet")
+set closetFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/my bedroom/closet")
 
-set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box        /coke can")
+set cokecanFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box        /coke can")
 
-set oldHWFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
+set oldHWFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
 
-set booksFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf")
+set booksFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/bookshelf")
 
 set atticvisits to 0
 
@@ -47,6 +47,7 @@ repeat
         set atticvisits to 3
 
       else if atticvisits = 3 then  
+        do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s 2)"
         do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 0)"
 
         say "Why do you keep coming back? Why won't you just let it go?" without waiting until completion
@@ -97,7 +98,7 @@ repeat
       display dialog "I was really into animals when I was little. We had this huge animal encyclopedia that I read from cover to cover. It was my favorite." buttons {"Is that the one on the shelf?"}
 
       tell app "Preview"
-        open "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf/EAA.gif"
+        open "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/bookshelf/EAA.gif"
         activate
       end tell
 
@@ -321,6 +322,7 @@ repeat
                 display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." buttons {"OK"}
 
                 -- play toy piano
+                do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1461 -s 0)"
 
                 say "Fur Elise was one of the first real songs I learned how to play." without waiting until completion
                 display dialog "Fur Elise was one of the first real songs I learned how to play." buttons {"How long have you been playing?"}

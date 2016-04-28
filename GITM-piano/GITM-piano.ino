@@ -34,7 +34,7 @@
 unsigned long startMillis;
 unsigned long noteStartTime;
 
-int LoopLength = 45;
+int LoopLength = 40;
 int CurrLoop = 0;
 
 int LoopPosition = 0;
@@ -45,22 +45,19 @@ unsigned int NoteDuration;
 boolean playingNote = false;
 boolean playSong = false;
 
-int Loops [2][40][2] = {
-  {
-    {KE2, 125}, {KDS2, 125}, 
-    {KE2, 125}, {KDS2, 125}, {KE2, 125}, {KB1, 125}, {KD2, 125}, {KC2, 125}, 
-    {KA1, 250}, {REST, 125}, {KC1, 125}, {KE1, 125}, {KA1, 125},
-    {KB1, 250}, {REST, 125}, {KE1, 125}, {KGS1, 125}, {KB1, 125},
-    {KC2, 250}, {REST, 125}, {KE1, 125}, {KE2, 125}, {KDS2, 125}, 
-    {KE2, 125}, {KDS2, 125}, {KE2, 125}, {KB1, 125}, {KD2, 125}, {KC2, 125}, 
-    {KA1, 250}, {REST, 125}, {KC1, 125}, {KE1, 125}, {KA1, 125},
-    {KB1, 250}, {REST, 125}, {KE1, 125}, {KC2, 125}, {KB1, 125},
-    {KA1, 500}
-  },
-  
-  {
-    {OSHIT, 10000}
-  }
+boolean angry = false;
+
+int SongLoop [40][2] = {
+  {KE2, 250}, {KDS2, 250},
+  {KE2, 250}, {KDS2, 250}, {KE2, 250}, {KB1, 250}, {KD2, 250}, {KC2, 250},
+  {KA1, 500}, {REST, 250}, {KC1, 250}, {KE1, 250}, {KA1, 250},
+  {KB1, 500}, {REST, 250}, {KE1, 250}, {KGS1, 250}, {KB1, 250},
+  {KC2, 500}, {REST, 250}, {KE1, 250}, {KE2, 250}, {KDS2, 250},
+  {KE2, 250}, {KDS2, 250}, {KE2, 250}, {KB1, 250}, {KD2, 250}, {KC2, 250},
+  {KA1, 500}, {REST, 250}, {KC1, 250}, {KE1, 250}, {KA1, 250},
+  {KB1, 500}, {REST, 250}, {KE1, 250}, {KC2, 250}, {KB1, 250},
+  {KA1, 1000}
+
 };
 
 void setup() {
@@ -92,29 +89,33 @@ void loop() {
         LoopPosition = 0;
         liftKeys();
         break;
-
-      // turn off everything
-      case 'x':
+      case '2':
+        angry = true;
+        
         break;
     }
 
   }
 
-  if (playSong && LoopPosition < LoopLength) {
+  if (!playingNote && angry) {
+    digitalWrite(KG1, HIGH);
+    digitalWrite(KA1, HIGH);
+    digitalWrite(KB1, HIGH);
+    digitalWrite(KC2, HIGH);
+    digitalWrite(KD2, HIGH);
+
+    noteStartTime = startMillis;
+    NoteDuration = 1000;
+    playingNote = true;
+
+  }
+
+  else if (playSong && LoopPosition < LoopLength) {
     if (!playingNote) {
-      CurrNote = Loops[CurrLoop][LoopPosition][0];
-      NoteDuration = Loops[CurrLoop][LoopPosition][1];
+      CurrNote = SongLoop[LoopPosition][0];
+      NoteDuration = SongLoop[LoopPosition][1];
 
-      if (CurrNote == OSHIT) {
-        digitalWrite(KG1, HIGH);
-        digitalWrite(KA1, HIGH);
-        digitalWrite(KB1, HIGH);
-        digitalWrite(KC2, HIGH);
-        digitalWrite(KD2, HIGH);
-
-      }
-
-      else {
+      if(CurrNote != REST) {
         digitalWrite(CurrNote, HIGH);
       }
 
@@ -124,15 +125,16 @@ void loop() {
 
     }
 
-    else if (playingNote && startMillis - noteStartTime >= NoteDuration) {
-      liftKeys();
+  }
 
-    }
+  if (playingNote && startMillis - noteStartTime >= NoteDuration) {
+    liftKeys();
   }
 }
 
 void liftKeys() {
   playingNote = false;
+  angry = false;
 
   for (int i = 2; i < 22; i++) {
     digitalWrite(i, LOW);
