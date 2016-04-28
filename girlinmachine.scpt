@@ -3,16 +3,20 @@ set sushiFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senio
 set beatlesFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/car/sgt peppers.jpg")
 set mompianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano.jpg")
 set pianoFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/main hall/piano .jpg")
-set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/park.jpg")
-set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box /small box/disney.jpg")
+
+set momparkFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/park.jpg")
+
+set momdisneyFile to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/disney.jpg")
 
 set momdrawing to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/guest bedroom/bed/pillow/drawing.jpeg")
 
-set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic")
+set atticFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet ")
+
+set atticdoorFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic")
 
 set closetFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/my bedroom/closet")
 
-set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/door to attic/box        /coke can")
+set cokecanFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box        /coke can")
 
 set oldHWFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/first floor/dad's office/Box/Old hw") 
 
@@ -21,7 +25,7 @@ set booksFolder to name of (info for "/Users/tichaseth/Documents/CMU-2015-16/Sen
 set atticvisits to 0
 
 repeat
-  if (get name of every window of application "Finder") contains atticFolder then
+  if (get name of every window of application "Finder") contains atticFolder and (get name of every window of application "Finder") does not contain atticdoorFolder then
     tell app "System Events"
       if (atticvisits < 6) 
         delay 0.5
@@ -392,12 +396,12 @@ repeat
             display dialog "Awww that's Sushi. She looks so young in that photo." buttons {"That's a cute name."}
 
             say "Well, I didn't name her." without waiting until completion
-            display dialog "Well, I didn't name her." buttons {"Who did?"}
+            display dialog "Well, I didn't name her." buttons {"Oh? Who did?"}
 
             display dialog "...My mom always named the pets." buttons {"..."}
 
-            say "She used to tell me that whenever I named the pets, something bad would always happen to them. I believed that for a long time." without waiting until completion
-            display dialog "She used to tell me that whenever I named the pets, something bad would always happen to them. \n\nI believed that for a long time." buttons {"Is Sushi still alive?"} 
+            say "She used to tell me that whenever I named our pets, something bad would always happen to them. I believed that for a long time." without waiting until completion
+            display dialog "She used to tell me that whenever I named our pets, something bad would always happen to them. \n\nI believed that for a long time." buttons {"Is Sushi still with you?"} 
 
             say "Yeah, actually. Out of all the pets we've had, she's been with us the longest. Still very sprightly, too." without waiting until completion
             display dialog "Yeah, actually. Out of all the pets we've had, she's been with us the longest. Still very sprightly, too." buttons {"..."}
@@ -459,7 +463,7 @@ repeat
 
               set atticvisits to 0
 
-              repeat 6 times
+              repeat 7 times
                 delay 0.5
                 keystroke "w" using {command down} 
               end repeat 
