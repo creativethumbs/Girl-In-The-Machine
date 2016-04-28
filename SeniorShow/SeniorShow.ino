@@ -38,13 +38,13 @@ void loop () {
         angry = true;
         break;
       case '1':
+        digitalWrite(tablelampPin, LOW);
         digitalWrite(recordPin, LOW);
         break;
       case '3':
         digitalWrite(poochiPin, LOW);
         break;
-      case '4':
-        digitalWrite(tablelampPin, LOW);
+      case '4': 
         digitalWrite(fanPin, LOW);
         break;
       case '5':

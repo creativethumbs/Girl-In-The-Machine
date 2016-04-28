@@ -89,14 +89,13 @@ repeat
     tell app "System Events"
       delay 0.5 
 
-      say "I was really into animals when I was little. I remember having this huge animal encyclopedia that I red from cover to cover, called 'The Encyclopedia of Awesome Animals'. It was my favorite." without waiting until completion
-      display dialog "I was really into animals when I was little. I remember having this huge animal encyclopedia that I read from cover to cover, called 'The Encyclopedia of Awesome Animals'. It was my favorite." buttons {"Is that the one on the shelf?"}
+      say "I was really into animals when I was little. We had this huge animal encyclopedia that I red from cover to cover. It was my favorite." without waiting until completion
+      display dialog "I was really into animals when I was little. We had this huge animal encyclopedia that I read from cover to cover. It was my favorite." buttons {"Is that the one on the shelf?"}
 
       tell app "Preview"
-        open "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf/ .gif"
+        open "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf/EAA.gif"
         activate
       end tell
-      --tell app "Preview" to open "/Users/tichaseth/Documents/CMU-2015-16/Senior Studio II/GITM Maze/Girl in the Machine/home/second floor/bookshelf/ .gif"
 
       say "Yup, that's the one." without waiting until completion
       display dialog "Yup, that's the one." buttons {"OK"}
@@ -112,10 +111,15 @@ repeat
       display dialog "I only draw people now." buttons {"OK"}
 
       --blow fan
+      do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s 4)"
 
       delay 2
       tell app "Preview" to quit
       tell app "Finder" to close window 1
+
+      delay 1
+      do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
+
 
     end tell
 
