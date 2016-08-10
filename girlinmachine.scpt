@@ -4,6 +4,8 @@ set beatlesFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machi
 set mompianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano.jpg")
 set pianoFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/main hall/piano .jpg")
 
+set drawingFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/first floor/dining room/framed drawing.jpg")
+
 set momparkFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/park.jpg")
 
 set momdisneyFile to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/master bedroom/closet /door to attic/box /small box/disney.jpg")
@@ -25,6 +27,8 @@ set oldHWFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machi
 set booksFolder to name of (info for "/Users/tichaseth/Desktop/Girl in the Machine/home/second floor/bookshelf")
 
 set atticvisits to 0
+
+do shell script "(cd arduino-serial && ./arduino-serial -b 9600 -p /dev/cu.usbmodem1411 -s x)"
 
 repeat
   if (get name of every window of application "Finder") contains atticFolder and (get name of every window of application "Finder") does not contain atticdoorFolder then
@@ -148,7 +152,7 @@ repeat
       delay 0.5
 
       say "There's something comforting about watching the light dance in the turquoise water, don't you think?" without waiting until completion
-      display dialog "There's something comforting about watching the light dance in the turquoise water." buttons {"OK"}
+      display dialog "There's something comforting about watching the light dance in the turquoise water, don't you think?" buttons {"OK"}
 
       delay 0.5
       tell app "Finder" to close window 1
@@ -186,10 +190,10 @@ repeat
        if (get name of every window of application "Preview") contains gregoryFile then
 
            tell app "System Events"
-              delay 1
+              delay 0.5
               say "That's me looking sassy as ever. I guess I've always been surrounded by computers." without waiting until completion
-              display dialog "That's me looking sassy as ever. \nI guess I've always been surrounded by computers." buttons {"What's that on the computer screen?","Where was this?"}
-              if result = {button returned:"What's that on the computer screen?"} then
+              display dialog "That's me looking sassy as ever. \nI guess I've always been surrounded by computers." buttons {"What's that on the computer screen?"}
+
                 say "It's a game called 'Gregory and the Hot Air Balloon'. Have you heard of it?" without waiting until completion
                 display dialog "It's a game called 'Gregory and the Hot Air Balloon'. Have you heard of it?" buttons {"Yes", "No"}
 
@@ -212,71 +216,84 @@ repeat
 
                 end if
 
-              else if result = {button returned:"Where was this?"} then
-                say "Oh, this was from when we were in Florida. We lived in a large house, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." without waiting until completion
-                display dialog "Oh, this was from when we were in Florida. We lived in a large house, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." buttons {"Let's see it."}
-                if result = {button returned:"Let's see it."} then
-                  tell application "Safari"
-                      delay 1
-                      activate
-                      open location "http://www.google.com/maps/@26.3884514,-80.1436115,3a,75y,34.5h,77.17t/data=!3m6!1e1!3m4!1smUVyRWeS3sRv5l1ELNxlag!2e0!7i13312!8i6656!6m1!1e1?hl=en"
-                      delay 1
-                      activate
-                  end tell
-
-                  delay 5 -- wait for the house to load
-                  say "Man, it looks so different now." without waiting until completion
-                  display dialog "Man, it looks so different now." buttons {"Must have been nice, living in Florida.", "What about the other houses?"}
-                  if result = {button returned:"Must have been nice, living in Florida."} then
-                    say "It was. Those were some of the best years of my life. If I had the choice, I would have stayed in that house for as long as I could." without waiting until completion
-                    display dialog "It was. Those were some of the best years of my life. If I had the choice, I would have stayed in that house for as long as I could." buttons {"Why did you move?"}
-
-                    say "..." without waiting until completion
-                    display dialog "..." buttons {"..."} giving up after 2
-
-                    say "My mom wanted us to." without waiting until completion
-                    display dialog "My mom wanted us to." buttons {"OK"} giving up after 2
-
-                  else if result = {button returned:"What about the other houses?"} then
-                    say "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there." without waiting until completion
-                    display dialog "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there."buttons {"..."}
-
-                    say "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company." without waiting until completion
-                    display dialog "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company."buttons {"..."}
-
-                    say "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." without waiting until completion
-                    display dialog "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." buttons {"..."}
-
-                    say "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." without waiting until completion
-                    display dialog "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." buttons{"Your neighborhood looks pretty swanky.", "...How many crushes did you have?"}
-                    
-                    if result = {button returned:"Your neighborhood looks pretty swanky."} then
-                      say "Yeah, I didn't know about this back then but we apparently lived in one of the wealthiest communities in Southern Florida. It was the nicest neighborhood I've ever lived in." without waiting until completion
-                      display dialog "Yeah, I didn't know about this back then but we apparently lived in one of the wealthiest communities in Southern Florida. It was the nicest neighborhood I've ever lived in." buttons {"OK"}
-                    
-                    else if result = {button returned:"...How many crushes did you have?"} then
-                      say "Probably way too many for someone at that age." without waiting until completion
-                      display dialog "Probably waaay too many for someone at that age." buttons {"OK"} 
-
-                    end if
-
-                  end if
-
-                end if
-
-              end if 
-
               tell app "Preview"
                 delay 2
                 quit
               end tell
 
+              tell application "Safari" 
+                quit
+              end tell
+
            end tell
+
+        else if (get name of every window of application "Preview") contains drawingFile then
+          tell app "System Events"
+          delay 0.5
+
+          say "Home was my favorite place to be when I was little. We used to live in a large house in Florida, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." without waiting until completion
+          display dialog "Home was my favorite place to be when I was little. We used to live in a large house in Florida, next to a lake and a few families of ducks. I still remember the house vividly and sometimes stroll through it in my dreams." buttons {"Can I see it?"}
+          
+            tell application "Safari"
+                delay 1
+                activate
+                open location "http://www.google.com/maps/@26.3884514,-80.1436115,3a,75y,34.5h,77.17t/data=!3m6!1e1!3m4!1smUVyRWeS3sRv5l1ELNxlag!2e0!7i13312!8i6656!6m1!1e1?hl=en"
+                delay 1
+                activate
+            end tell
+
+            tell app "Preview"
+              delay 2
+              quit
+            end tell
+
+            delay 10 -- wait for the house to load
+            say "Man, it looks so different now." without waiting until completion
+            display dialog "Man, it looks so different now." buttons {"Must have been nice, living in Florida.", "What about the other houses?"}
+            if result = {button returned:"Must have been nice, living in Florida."} then
+              say "It was. Those were some of the best years of my life. If I had the choice, I would have stayed in that house for as long as I could." without waiting until completion
+              display dialog "It was. Those were some of the best years of my life. If I had the choice, I would have stayed in that house for as long as I could." buttons {"Why did you move?"}
+
+              say "..." without waiting until completion
+              display dialog "..." buttons {"..."} giving up after 2
+
+              say "My mom wanted us to." without waiting until completion
+              display dialog "My mom wanted us to." buttons {"OK"}
+
+            else if result = {button returned:"What about the other houses?"} then
+              say "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there." without waiting until completion
+              display dialog "The gray house right across from ours was Adam and Eric's. I can't believe their basketball net is still there."buttons {"..."}
+
+              say "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company." without waiting until completion
+              display dialog "The house to the left of theirs belonged to Alex. He kind of annoyed me sometimes but I enjoyed his company."buttons {"..."}
+
+              say "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." without waiting until completion
+              display dialog "And the house to the right with the brown garage door was Simon's. He came over often and we'd play games or watch Pokemon together. He was my first crush." buttons {"..."}
+
+              say "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." without waiting until completion
+              display dialog "Oh, and Eric lived in the house right next to ours on the left. Even though he was a few years older than me, he was really nice and didn't treat me like some pesky little kid. He was my second crush." buttons{"Your neighborhood looks pretty swanky.", "...How many crushes did you have?"}
+              
+              if result = {button returned:"Your neighborhood looks pretty swanky."} then
+                say "Yeah, I didn't know about this back then but we apparently lived in one of the wealthiest communities in Southern Florida. It was the nicest neighborhood I've ever lived in." without waiting until completion
+                display dialog "Yeah, I didn't know about this back then but we apparently lived in one of the wealthiest communities in Southern Florida. It was the nicest neighborhood I've ever lived in." buttons {"OK"}
+              
+              else if result = {button returned:"...How many crushes did you have?"} then
+                say "Probably way too many for someone at that age." without waiting until completion
+                display dialog "Probably waaay too many for someone at that age." buttons {"OK"} 
+
+              end if
+            end if
+
+            tell application "Safari" 
+              quit
+            end tell
+
+          end tell
 
         else if (get name of every window of application "Preview") contains mompianoFile then
 
            tell app "System Events"
-                delay 1
+                delay 0.5
                 say "This is the best part of the house. Had the piano and fireplace and everything." without waiting until completion
                 display dialog "This is the best part of the house. Had the piano and fireplace and everything." buttons {"Nice bird.", "Who's that?"}
 
@@ -313,7 +330,7 @@ repeat
         else if (get name of every window of application "Preview") contains momdrawing then
 
            tell app "System Events"
-                delay 1
+                delay 0.5
                 tell app "Preview" 
                   quit
                 end tell
@@ -327,7 +344,7 @@ repeat
         else if (get name of every window of application "Preview") contains pianoFile then
 
            tell app "System Events"
-                delay 1
+                delay 0.5
                 say "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." without waiting until completion
                 display dialog "My middle name is Melody. For real. It's no coincidence that music is a huge part of my life." buttons {"OK"}
 
@@ -371,7 +388,7 @@ repeat
         else if (get name of every window of application "Preview") contains beatlesFile then
 
          tell app "System Events"
-            delay 1
+            delay 0.5
             say "When I was in elementary school, whenever my dad drove me to school he would always put on The Beatles' Sargent Peppers album for us to listen to. I still vividly remember those times in the car." without waiting until completion
             display dialog "When I was in elementary school, whenever my dad drove me to school he would always put on The Beatles' Sgt. Peppers album for us to listen to. \nI still vividly remember those times in the car." buttons {"OK"}
 
@@ -406,13 +423,14 @@ repeat
        else if (get name of every window of application "Preview") contains sushiFile then
 
          tell app "System Events"
-            delay 1
+            delay 0.5
             say "Awww that's Su shi. She looks so young in that photo." without waiting until completion
             display dialog "Awww that's Sushi. She looks so young in that photo." buttons {"That's a cute name."}
 
             say "Well, I didn't name her." without waiting until completion
             display dialog "Well, I didn't name her." buttons {"Oh? Who did?"}
 
+            say "My mom always named the pets." without waiting until completion
             display dialog "...My mom always named the pets." buttons {"..."}
 
             say "She used to tell me that whenever I named our pets, something bad would always happen to them. I believed that for a long time." without waiting until completion
@@ -439,7 +457,7 @@ repeat
 
          else if (get name of every window of application "Preview") contains momparkFile or (get name of every window of application "Preview") contains momdisneyFile then
            tell app "System Events"
-              delay 1
+              delay 0.5
               say "I usually avoid talking about my mom with other people. But I suppose it's never too late to start." without waiting until completion
               display dialog "I usually avoid talking about my mom with other people. \n\nBut I suppose it's never too late to start." buttons {"..."}
 
